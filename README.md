@@ -1,4 +1,4 @@
-# Rigify
+# Rigify with Rig presets
 
 Rigify helps automate the creation of character rigs. It is based around a building-blocks approach, where you build complete rigs out of smaller rig parts (e.g. arms, legs, spines, fingers...). The rig parts are currently few in number, but as more rig parts are added to Rigify it should become more and more capable of rigging a large variety of characters and creatures.
 
