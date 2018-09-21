@@ -276,7 +276,7 @@ def RigFolderItems(self, context):
 
 ## NEW PRESET SECTION
 IDStore = bpy.types.WindowManager
-IDStore.rigify_presets = bpy.props.BoolProperty(name="Rigify Presets",
+IDStore.rigify_presets = bpy.props.BoolProperty(name="Rig Presets",
                                                 description="Save/load Rigify rig presets",
                                                 default=False)
 
