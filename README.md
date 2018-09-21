@@ -1,5 +1,14 @@
 # Rigify with Rig presets
 
+This fork has a new section added which makes it possible to save rig setup to a preset folder. The function was already excisting but would generate a text inside blender. I simple added some new functions so these presets can directly be save in the blender preset folder of metarigs. Presets can be added to folder as well as new folders can be created.
+
+These added preset can than be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8
+
+!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-preset-addon.png)
+
+
+## Rigify Addon
+
 Rigify helps automate the creation of character rigs. It is based around a building-blocks approach, where you build complete rigs out of smaller rig parts (e.g. arms, legs, spines, fingers...). The rig parts are currently few in number, but as more rig parts are added to Rigify it should become more and more capable of rigging a large variety of characters and creatures.
 
 Rigify also operates on the principle that once a rig is created, that rig should no longer need Rigify. This means you can always distribute rigs created with Rigify to people who do not have it and the rigs will still function completely.
@@ -10,13 +19,6 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 >Addon documentation can be found at: <b>[Rigify Addon Extention page](https://en.blender.org/index.php/Extensions:2.6/Py/Scripts/Rigging/Rigify)</b>
 
-## Added Rig Preset
-
-This fork has a new section added which makes it possible to save rig setup to a preset folder. The function was already excisting but would generate a text inside blender. I simple added some new functions so these presets can directly be save in the blender preset folder of metarigs. Presets can be added to folder as well as new folders can be created.
-
-These added preset can than be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8
-
-!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-preset-addon.png)
 
 ### System Requirements
 
