@@ -14,6 +14,9 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 This fork has a new section added which makes it possible to save rig setup to a preset folder. The function was already excisting but would generate a text inside blender. I simple added some new functions so these presets can directly be save in the blender preset folder of metarigs. Presets can be added to folder as well as new folders can be created.
 
+These added preset can than be loaded directly using the add menu. To get the new preset to show you need to either restart blender or reload the all the addons pressing F8
+
+!['Example Rig Presets'](images/rigify-preset-addon.png)
 
 ### System Requirements
 
