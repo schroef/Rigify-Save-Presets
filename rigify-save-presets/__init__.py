@@ -247,10 +247,8 @@ def PresetFolders():
         if os.path.isdir(os.path.join(path,"addons","rigify")):
             #script_file = os.path.realpath("./rigify/metarigs")
             #script_file = os.path.join(path,"addons","TheaForBlender")
-            print("## path: %s" % path)
             directory = os.path.dirname(path)
             #localDir = os.path.join(directory, "metarigs")
-            print("## directory: %s" % directory)
             localDir = os.path.join(directory,"scripts","addons","rigify", "metarigs")
 
     #rig_presets = os.path.join(localDir,"rig_presets")
