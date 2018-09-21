@@ -1,11 +1,20 @@
 import bpy
 import os
 import re
-from .utils import write_metarig
+from rigify.utils import write_metarig
 from bpy.types import Operator, Menu
 from bpy.props import StringProperty, BoolProperty, EnumProperty
 from bl_operators.presets import AddPresetBase
 
+bl_info = {
+    "name": "Rigify Save Presets",
+    "version": (0, 0, 2),
+    "author": "Rombout Versluijs",
+    "blender": (2, 78, 0),
+    "description": "Makes is easier to save rig presets to Rigify folder",
+    "location": "Armature properties, Bone properties, View3d tools panel, Armature Add menu",
+    "wiki_url": "https://github.com/schroef/rigify-save-presets",
+    "category": "Rigging"}
 
 class RIGIFY_MT_SettingsPresetMenu(Menu):
     #bl_idname = "rigify.setting_preset_menu"
@@ -233,9 +242,16 @@ class RIGIFY_OT_AddSettingsPreset(AddPresetBase, Operator):
 def PresetFolders():
     """Return paths for both local and user preset folders"""
 
-    script_file = os.path.realpath(__file__)
-    directory = os.path.dirname(script_file)
-    localDir = os.path.join(directory, "metarigs")
+    #script_file = os.path.realpath(__file__)
+    for path in bpy.utils.script_paths():
+        if os.path.isdir(os.path.join(path,"addons","rigify")):
+            #script_file = os.path.realpath("./rigify/metarigs")
+            #script_file = os.path.join(path,"addons","TheaForBlender")
+            print("## path: %s" % path)
+            directory = os.path.dirname(path)
+            #localDir = os.path.join(directory, "metarigs")
+            print("## directory: %s" % directory)
+            localDir = os.path.join(directory,"scripts","addons","rigify", "metarigs")
 
     #rig_presets = os.path.join(localDir,"rig_presets")
 
@@ -432,3 +448,4 @@ def unregister():
 
 if __name__ == "__main__":
     register()
+

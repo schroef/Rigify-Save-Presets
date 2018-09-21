@@ -1,4 +1,4 @@
-# Rigify with Rig presets
+# Rigify Save Presets
 
 This fork has a new section added which makes it possible to save rig setup to a preset folder. The function was already excisting but would generate a text inside blender. I simple added some new functions so these presets can directly be save in the blender preset folder of metarigs. Presets can be added to folder as well as new folders can be created.
 
@@ -39,15 +39,25 @@ It is important to note that Rigify only automates the creation of the rig contr
 6. Select the file `rigify-master.zip` from your download location..
 7. Activate the checkbox for the plugin that you will now find in the list.
 
+>this addon requires <b>Rigify</b> to be active
 
 
 ### Changelog
 
-<!--| **Version** | **Date** | **Change log** |-->
-<!--| ------------- | ------------- | ------------- |-->
-<!--| 0.6.0 | 10.08.2017 | • Add<br>- Made new panel menu align better. i think i will run over all panels and make them more compact.<br>  The new panel design have items grouped better together. Makes more it view much easier.<br>-->
+## [0.0.2] (21-09-2018)
+<!--[Full Changelog](https://github.com/skywinder/github-changelog-generator/compare/v1.15.0.pre.beta...v1.15.0-rc)-->
+
+**Changed:**
+
+- Separated this function into its own addon for easier install using current installed version. It shows cleaner with no errors in the preferences tab
 
 
+## [0.0.1] (21-09-2018)
+<!--[Full Changelog](https://github.com/skywinder/github-changelog-generator/compare/v1.15.0.pre.beta...v1.15.0-rc)-->
+
+**Added:**
+
+- Easier method for save rig presets to the addon, initially done in main addon
 
 <!--### Official Rigify Info-->
 
