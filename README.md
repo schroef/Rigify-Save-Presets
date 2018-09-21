@@ -16,7 +16,7 @@ It is important to note that Rigify only automates the creation of the rig contr
 | **OS** | **Blender** |
 | ------------- | ------------- |
 | OSX | Blender 2.78+ |
-| Windows | Blender 2.78+ |
+| Windows | Not Tested |
 | Linux | Not Tested |
 
 
