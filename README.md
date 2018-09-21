@@ -10,6 +10,10 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 >Addon documentation can be found at: <b>[Rigify Addon Extention page](https://en.blender.org/index.php/Extensions:2.6/Py/Scripts/Rigging/Rigify)</b>
 
+## Added Rig Preset
+
+This fork has a new section added which makes it possible to save rig setup to a preset folder. The function was already excisting but would generate a text inside blender. I simple added some new functions so these presets can directly be save in the blender preset folder of metarigs. Presets can be added to folder as well as new folders can be created.
+
 
 ### System Requirements
 
