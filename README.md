@@ -2,8 +2,7 @@
 
 This addon makes it possible to save rig setup to a preset folder. The function was already existing but would generate a text inside Blender. I simply added some new functions so these presets can directly be saved in the Blender preset folder of Metarigs. Presets can be added to a folder as well as new folders can be created.
 
-The added presets can then be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8
-Its also now possible save Rigify main settings as presets. These can be loaded at any time, no need for a refresh.
+The added presets can then be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8. Its also now possible save Rigify main settings as presets. These can be loaded at any time, no need for a refresh.
 
 !['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-save-presets.png)
 
