@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.0.4] - 2018-09-22
+### Changed
+- cleaned code
+- Deleted old functions and classes
+
 ## [0.0.3] - 2018-09-22
 ### Added
 - Option to save rigify settings presets, load/save preset settings for rigify while working on the meta rig.
