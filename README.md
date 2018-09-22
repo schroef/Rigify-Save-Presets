@@ -4,7 +4,7 @@ This fork has a new section added which makes it possible to save rig setup to a
 
 These added preset can than be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8
 
-!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-preset-addon.png)
+!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-save-preset.png)
 
 
 ## Rigify Addon
@@ -44,19 +44,22 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 ### Changelog
 
-## [0.0.2] (21-09-2018)
+## [0.0.3] (22-09-2018)
 <!--[Full Changelog](https://github.com/skywinder/github-changelog-generator/compare/v1.15.0.pre.beta...v1.15.0-rc)-->
+**Added:**
+- Option to save rigify settings presets, load/save preset settings for rigify while working on the meta rig
 
 **Changed:**
+- UI updated, same as advanced settings
 
+## [0.0.2] (21-09-2018)
+<!--[Full Changelog](https://github.com/skywinder/github-changelog-generator/compare/v1.15.0.pre.beta...v1.15.0-rc)-->
+**Changed:**
 - Separated this function into its own addon for easier install using current installed version. It shows cleaner with no errors in the preferences tab
-
 
 ## [0.0.1] (21-09-2018)
 <!--[Full Changelog](https://github.com/skywinder/github-changelog-generator/compare/v1.15.0.pre.beta...v1.15.0-rc)-->
-
 **Added:**
-
 - Easier method for save rig presets to the addon, initially done in main addon
 
 <!--### Official Rigify Info-->
