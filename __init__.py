@@ -8,7 +8,7 @@ from bl_operators.presets import AddPresetBase
 
 bl_info = {
     "name": "Rigify Save Presets",
-    "version": (0, 0, 5),
+    "version": (0, 0, 6),
     "author": "Rombout Versluijs",
     "blender": (2, 78, 0),
     "description": "Makes is easier to save rig presets to Rigify folder",
@@ -366,8 +366,15 @@ def panel_func(self, context):
 
             settingsBox = layout.row()
             split = settingsBox.split(percentage=0.3)
+            #split.label("")
+            #sub = split.row(align=True)
             split.prop(id_store, "rigify_overwrite")
+            #settingsBox = layout.row()
+
+            #split = settingsBox.split(percentage=0.3)
+            #split.label("")
             sub = split.row(align=True)
+            sub.scale_y = 1.5
             sub.operator('armature.rigify_add_rig_preset')
 
 
