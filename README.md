@@ -49,6 +49,7 @@ It is important to note that Rigify only automates the creation of the rig contr
 ### Added
 - Option to save rigify settings presets, load/save preset settings for rigify while working on the meta rig
 - Changelog formating
+###
 
 ### Changed
 - UI updated, same as advanced settings
@@ -56,10 +57,12 @@ It is important to note that Rigify only automates the creation of the rig contr
 ## [0.0.2] - 21-09-2018
 ### Changed
 - Separated this function into its own addon for easier install using current installed version. It shows cleaner with no errors in the preferences tab
+###
 
 ## [0.0.1] - 21-09-2018
 ### Changed
 - Easier method for save rig presets to the addon, initially done in main addon
+###
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
