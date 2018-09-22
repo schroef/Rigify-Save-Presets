@@ -31,7 +31,7 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 ### Installation Process
 
-1. Download the zip <!--or fork to local system  <b>[fork release](https://github.com/schroef/TheaForBlender/releases/)</b>-->
+1. Download the latest <b>[release](https://github.com/schroef/rigify-save-presets/releases/)</b>
 2. If you downloaded the zip file.
 3. Open Blender.
 4. Go to File -> User Preferences -> Addons.
