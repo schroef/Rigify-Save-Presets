@@ -43,9 +43,9 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 
 ### Changelog
-
-## [0.0.3] - (22-09-2018)
 <!--[Full Changelog](https://github.com/skywinder/github-changelog-generator/compare/v1.15.0.pre.beta...v1.15.0-rc)-->
+
+## [0.0.3] - 22-09-2018
 ### Added
 - Option to save rigify settings presets, load/save preset settings for rigify while working on the meta rig
 - Changelog formating
@@ -53,13 +53,11 @@ It is important to note that Rigify only automates the creation of the rig contr
 ### Changed
 - UI updated, same as advanced settings
 
-## [0.0.2] - (21-09-2018)
-<!--[Full Changelog](https://github.com/skywinder/github-changelog-generator/compare/v1.15.0.pre.beta...v1.15.0-rc)-->
+## [0.0.2] - 21-09-2018
 ### Changed
 - Separated this function into its own addon for easier install using current installed version. It shows cleaner with no errors in the preferences tab
 
-## [0.0.1] - (21-09-2018)
-<!--[Full Changelog](https://github.com/skywinder/github-changelog-generator/compare/v1.15.0.pre.beta...v1.15.0-rc)-->
+## [0.0.1] - 21-09-2018
 ### Changed
 - Easier method for save rig presets to the addon, initially done in main addon
 
