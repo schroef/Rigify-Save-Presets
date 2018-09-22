@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.0.6] - 2018-09-22
+### Changed
+- Update panel layout, bigger add preset button
+
 ## [0.0.5] - 2018-09-22
 ### Changed
 - Cleaned code
