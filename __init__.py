@@ -8,7 +8,7 @@ from bl_operators.presets import AddPresetBase
 
 bl_info = {
     "name": "Rigify Save Presets",
-    "version": (0, 0, 4),
+    "version": (0, 0, 5),
     "author": "Rombout Versluijs",
     "blender": (2, 78, 0),
     "description": "Makes is easier to save rig presets to Rigify folder",

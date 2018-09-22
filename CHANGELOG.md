@@ -1,9 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.0.5] - 2018-09-22
+### Changed
+- Cleaned code
+- Delete old class
+
 ## [0.0.4] - 2018-09-22
 ### Changed
-- cleaned code
+- Cleaned code
 - Deleted old functions and classes
 
 ## [0.0.3] - 2018-09-22
