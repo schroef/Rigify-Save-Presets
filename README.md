@@ -4,7 +4,7 @@ This fork has a new section added which makes it possible to save rig setup to a
 
 These added preset can than be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8
 
-!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-save-preset.png)
+!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-save-presets.png)
 
 
 ## Rigify Addon
