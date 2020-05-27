@@ -39,7 +39,7 @@ It is important to note that Rigify only automates the creation of the rig contr
 6. Select the file `rigify-master.zip` from your download location..
 7. Activate the checkbox for the plugin that you will now find in the list.
 
->this addon requires <b>Rigify</b> to be active
+>this addon requires <b>Rigify</b> to be active <br>
 >Older 2.79 version can be found in this branch: <b>[Rigify-Save-Presets bl2.79](https://github.com/schroef/Rigify-Save-Presets/tree/bl-279)</b>
 
 
