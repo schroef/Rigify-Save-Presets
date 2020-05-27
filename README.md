@@ -4,7 +4,7 @@ This addon makes it possible to save rig setup to a preset folder. The function 
 
 The added presets can then be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8. Its also now possible save Rigify main settings as presets. These can be loaded at any time, no need for a refresh.
 
-!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-save-presets.png?v22-09-2018)
+!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/rigify/images/rigify-save-presets-v007.png?v27-05-2020)
 
 
 ## Rigify Addon
@@ -24,7 +24,7 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 | **OS** | **Blender** |
 | ------------- | ------------- |
-| OSX | Blender 2.78+ |
+| OSX | Blender 2.80+ |
 | Windows | Not Tested |
 | Linux | Not Tested |
 
@@ -44,10 +44,6 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 ### Changelog
 [Full Changelog](CHANGELOG.md)
-
-
-
-
 
 <!--
 - Fill in data

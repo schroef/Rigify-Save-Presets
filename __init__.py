@@ -8,9 +8,9 @@ from bl_operators.presets import AddPresetBase
 
 bl_info = {
     "name": "Rigify Save Presets",
-    "version": (0, 0, 6),
+    "version": (0, 0, 7),
     "author": "Rombout Versluijs",
-    "blender": (2, 78, 0),
+    "blender": (2, 80, 0),
     "description": "Makes is easier to save rig presets to Rigify folder",
     "location": "Armature properties, Bone properties, View3d tools panel, Armature Add menu",
     "wiki_url": "https://github.com/schroef/rigify-save-presets",
@@ -82,13 +82,13 @@ class RIGIFY_OT_AddSettingsPreset(Operator):
     bl_label = "Save Rigify Settings as preset"
     preset_menu = "RIGIFY_MT_SettingsPresetMenu"
 
-    name = StringProperty(
+    name : StringProperty(
             name="Name",
             description="Name of the preset, used to make the path name",
             maxlen=64,
             options={'SKIP_SAVE'},
             )
-    remove_active = BoolProperty(
+    remove_active : BoolProperty(
             default=False,
             options={'HIDDEN', 'SKIP_SAVE'},
             )
@@ -224,8 +224,8 @@ IDStore = bpy.types.WindowManager
 IDStore.rigify_preset = bpy.props.EnumProperty(
                         name="Rigify Save Presets",
                         description="'Save presets for rigify settings and rig presets.",
-                        items=(('Setting Presets', 'Setting Presets', 'Save Rigify settings'),
-                             ('Rig Presets', 'Rig Presets', 'Save Rig presets')))
+                        items=(('Setting Presets','Setting Presets','Save Rigify settings'),
+                             ('Rig Presets','Rig Presets','Save Rig presets')))
 
 IDStore.rigify_presetsEnabled = bpy.props.BoolProperty(
                         name="Rigify Presets",
@@ -333,23 +333,23 @@ def panel_func(self, context):
         row.prop(id_store, "rigify_preset", expand=True)
         if id_store.rigify_preset == 'Setting Presets':
             settingsBox = layout.row()
-            split = settingsBox.split(percentage=0.3)
+            split = settingsBox.split(factor=0.3)
             split.label(text="Presets:")
             sub = split.row(align=True)
             sub.menu(RIGIFY_MT_SettingsPresetMenu.__name__, text=RIGIFY_MT_SettingsPresetMenu.bl_label)
-            sub.operator(RIGIFY_OT_AddSettingsPreset.bl_idname, text="", icon='ZOOMIN') #preset_values = context
-            sub.operator(RIGIFY_OT_AddSettingsPreset.bl_idname, text="", icon='ZOOMOUT').remove_active = True
+            sub.operator(RIGIFY_OT_AddSettingsPreset.bl_idname, text="", icon='ADD') #preset_values = context
+            sub.operator(RIGIFY_OT_AddSettingsPreset.bl_idname, text="", icon='REMOVE').remove_active = True
             layout.separator()
 
         if id_store.rigify_preset == 'Rig Presets':
             settingsBox = layout.row()
-            split = settingsBox.split(percentage=0.3)
+            split = settingsBox.split(factor=0.3)
             split.label(text="Preset name:")
             sub = split.row(align=True)
             sub.prop(id_store, "rigify_presetName", text="")
 
             settingsBox = layout.row()
-            split = settingsBox.split(percentage=0.3)
+            split = settingsBox.split(factor=0.3)
             split.label(text="Folder:")
             sub = split.row(align=True)
             sub.prop(id_store, "rigify_folders", text="")
@@ -358,20 +358,20 @@ def panel_func(self, context):
             if id_store.rigify_addfolder:
                 setattr(id_store,'rigify_folders', "0")
                 settingsBox = layout.row()
-                split = layout.split(percentage=0.3)
+                split = layout.split(factor=0.3)
                 split.label("Preset Folder:")
                 subs = split.row(align=True)
                 subs.prop(id_store, "rigify_presetFolder", text="")
                 subs.active =  id_store.rigify_addfolder == True
 
             settingsBox = layout.row()
-            split = settingsBox.split(percentage=0.3)
+            split = settingsBox.split(factor=0.3)
             #split.label("")
             #sub = split.row(align=True)
             split.prop(id_store, "rigify_overwrite")
             #settingsBox = layout.row()
 
-            #split = settingsBox.split(percentage=0.3)
+            #split = settingsBox.split(factor=0.3)
             #split.label("")
             sub = split.row(align=True)
             sub.scale_y = 1.5
