@@ -48,4 +48,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [0.0.4]:https://github.com/schroef/Rigify-Save-Presets/releases/tag/v0.0.4
 [0.0.3]:https://github.com/schroef/Rigify-Save-Presets/releases/tag/v0.0.3
 [0.0.2]:https://github.com/schroef/Rigify-Save-Presets/releases/tag/v0.0.2
-[0.0.1]:https://github.com/schroef/Rigify-Save-Presets/releases/tag/v0.0.1
+[0.0.1]:https://github.com/schroef/Rigify-Save-Presets/releases/tag/v0.0.
