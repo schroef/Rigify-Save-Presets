@@ -31,6 +31,8 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 ### Installation Process
 
+>this addon requires <b>Rigify</b> to be active
+
 1. Download the latest <b>[release](https://github.com/schroef/rigify-save-presets/releases/)</b>
 2. If you downloaded the zip file.
 3. Open Blender.
@@ -39,7 +41,6 @@ It is important to note that Rigify only automates the creation of the rig contr
 6. Select the file `rigify-master.zip` from your download location..
 7. Activate the checkbox for the plugin that you will now find in the list.
 
->this addon requires <b>Rigify</b> to be active <br>
 >Older 2.79 version can be found in this branch: <b>[Rigify-Save-Presets bl2.79](https://github.com/schroef/Rigify-Save-Presets/tree/bl-279)</b>
 
 
