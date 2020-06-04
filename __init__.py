@@ -8,7 +8,7 @@ from bl_operators.presets import AddPresetBase
 
 bl_info = {
     "name": "Rigify Save Presets",
-    "version": (0, 0, 7),
+    "version": (0, 0, 8),
     "author": "Rombout Versluijs",
     "blender": (2, 80, 0),
     "description": "Makes is easier to save rig presets to Rigify folder",
@@ -65,11 +65,11 @@ def write_rig_settings(obj, layers=False, func_name="create", groups=False):
         for i in range(len(arm.rigify_layers)):
             name = arm.rigify_layers[i].name
             row = arm.rigify_layers[i].row
-            set = arm.rigify_layers[i].set
+            selset = arm.rigify_layers[i].selset
             group = arm.rigify_layers[i].group
             code.append('arm.rigify_layers[' + str(i) + '].name = "' + name + '"')
             code.append('arm.rigify_layers[' + str(i) + '].row = ' + str(row))
-            code.append('arm.rigify_layers[' + str(i) + '].set = ' + str(set))
+            code.append('arm.rigify_layers[' + str(i) + '].selset = ' + str(selset))
             code.append('arm.rigify_layers[' + str(i) + '].group = ' + str(group))
 
     #print(code)
