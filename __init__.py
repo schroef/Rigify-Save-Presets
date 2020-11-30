@@ -8,7 +8,7 @@ from bl_operators.presets import AddPresetBase
 
 bl_info = {
     "name": "Rigify Save Presets",
-    "version": (0, 0, 8),
+    "version": (0, 0, 9),
     "author": "Rombout Versluijs",
     "blender": (2, 80, 0),
     "description": "Makes is easier to save rig presets to Rigify folder",
@@ -359,7 +359,7 @@ def panel_func(self, context):
                 setattr(id_store,'rigify_folders', "0")
                 settingsBox = layout.row()
                 split = layout.split(factor=0.3)
-                split.label("Preset Folder:")
+                split.label(text="Preset Folder:")
                 subs = split.row(align=True)
                 subs.prop(id_store, "rigify_presetFolder", text="")
                 subs.active =  id_store.rigify_addfolder == True
