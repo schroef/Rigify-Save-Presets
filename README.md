@@ -15,9 +15,9 @@ Rigify also operates on the principle that once a rig is created, that rig shoul
 
 It is important to note that Rigify only automates the creation of the rig controls and bones. It does not attach the rig to a mesh, so you still have to do skinning etc. yourself.
 
-!['Example Rigify Metarig'](https://en.blender.org/uploads/thumb/6/6b/Addon_Rigify_0.5_split_metarig.png/640px-Addon_Rigify_0.5_split_metarig.png)
+!['Example Rigify Metarig'](https://raw.githubusercontent.com/wiki/schroef/Rigify-Save-Presets/images/Addon_Rigify_0.5_split_metarig.png?v20241007)
 
->Addon documentation can be found at: <b>[Rigify Addon Extention page](https://en.blender.org/index.php/Extensions:2.6/Py/Scripts/Rigging/Rigify)</b>
+>Addon documentation can be found at: <b>[Rigify Addon Extention page](https://archive.blender.org/wiki/2015/index.php/Extensions:2.6/Py/Scripts/Rigging/Rigify/)</b>
 
 
 ### System Requirements
