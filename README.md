@@ -4,7 +4,7 @@ This addon makes it possible to save rig setup to a preset folder. The function 
 
 The added presets can then be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8. Its also now possible save Rigify main settings as presets. These can be loaded at any time, no need for a refresh.
 
-!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/Rigify-Save-Presets/images/rigify-save-presets-v009.png?v20241007)
+!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/Rigify-Save-Presets/images/rigify-save-presets-v011.png?v20241008)
 
 
 ## Rigify Addon
@@ -17,15 +17,15 @@ It is important to note that Rigify only automates the creation of the rig contr
 
 !['Example Rigify Metarig'](https://raw.githubusercontent.com/wiki/schroef/Rigify-Save-Presets/images/Addon_Rigify_0.5_split_metarig.png?v20241007)
 
->Addon documentation can be found at: <b>[Rigify Addon Extention page](https://archive.blender.org/wiki/2015/index.php/Extensions:2.6/Py/Scripts/Rigging/Rigify/)</b>
+>Addon documentation can be found at: <b>[Rigify manual](https://docs.blender.org/manual/en/latest/addons/rigging/rigify/index.html)</b>
 
 
 ### System Requirements
 
 | **OS** | **Blender** |
 | ------------- | ------------- |
-| OSX | Blender 2.80+ |
-| Windows | Not Tested |
+| OSX | Not Tested |
+| Windows | Blender 4.0+ |
 | Linux | Not Tested |
 
 
@@ -40,6 +40,7 @@ It is important to note that Rigify only automates the creation of the rig contr
 7. Activate the checkbox for the plugin that you will now find in the list.
 
 >this addon requires <b>Rigify</b> to be active
+>Older 2.80 - 3.6.0 version can be found in this branch: <b>[Rigify-Save-Presets bl2.80-bl3.60](https://github.com/schroef/Rigify-Save-Presets/tree/bl-280)</b>
 >Older 2.79 version can be found in this branch: <b>[Rigify-Save-Presets bl2.79](https://github.com/schroef/Rigify-Save-Presets/tree/bl-279)</b>
 
 

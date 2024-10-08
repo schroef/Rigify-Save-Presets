@@ -8,9 +8,9 @@ from bl_operators.presets import AddPresetBase
 
 bl_info = {
     "name": "Rigify Save Presets",
-    "version": (0, 0, 9),
+    "version": (0, 1, 1),
     "author": "Rombout Versluijs",
-    "blender": (2, 80, 0),
+    "blender": (4, 0, 0),
     "description": "Makes is easier to save rig presets to Rigify folder",
     "location": "Armature properties, Bone properties, View3d tools panel, Armature Add menu",
     "wiki_url": "https://github.com/schroef/rigify-save-presets",
@@ -39,8 +39,17 @@ def write_rig_settings(obj, layers=False, func_name="create", groups=False):
     arm = obj.data
 
     #First delete all old ones
-    code.append("\nbpy.ops.armature.rigify_bone_group_remove_all()")
+    code.append("\narm.collections.active_index = 0")
+    code.append("\nfor col in arm.collections_all:")
+    code.append("\tbpy.ops.armature.collection_remove()\n")
 
+    #remove all colors
+    
+    code.append("\ntry:")
+    code.append("\tbpy.ops.armature.rigify_color_set_remove_all()")
+    code.append("except:")
+    code.append("\tpass\n")
+    
     # Rigify bone group colors info
     if groups and len(arm.rigify_colors) > 0:
         code.append("\nfor i in range(" + str(len(arm.rigify_colors)) + "):")
@@ -59,18 +68,38 @@ def write_rig_settings(obj, layers=False, func_name="create", groups=False):
             code.append('arm.rigify_colors[' + str(i) + '].select = ' + str(select[:]))
             #code.append('arm.rigify_colors[' + str(i) + '].standard_colors_lock = ' + str(standard_colors_lock))
 
-    # Rigify layer layout info
-    if layers and len(arm.rigify_layers) > 0:
+    
+    # Add bone collections 
+    code.append('\nfor i in range('+(str(len(arm.collections_all)+1))+'):')
+    code.append('\tbpy.ops.armature.collection_add()\n')
 
-        for i in range(len(arm.rigify_layers)):
-            name = arm.rigify_layers[i].name
-            row = arm.rigify_layers[i].row
-            selset = arm.rigify_layers[i].selset
-            group = arm.rigify_layers[i].group
-            code.append('arm.rigify_layers[' + str(i) + '].name = "' + name + '"')
-            code.append('arm.rigify_layers[' + str(i) + '].row = ' + str(row))
-            code.append('arm.rigify_layers[' + str(i) + '].selset = ' + str(selset))
-            code.append('arm.rigify_layers[' + str(i) + '].group = ' + str(group))
+    if layers and len(arm.collections_all) > 0:
+
+        for i in range(len(arm.collections_all)):
+            name = arm.collections_all[i].name
+            colorsetid = arm.collections_all[i].rigify_color_set_id
+            selset = arm.collections_all[i].rigify_sel_set
+            uirow = arm.collections_all[i].rigify_ui_row
+            uititle = arm.collections_all[i].rigify_ui_title
+            code.append('arm.collections_all[' + str(i) + '].name = "' + name + '"')
+            code.append('arm.collections_all[' + str(i) + '].rigify_color_set_id = ' + str(colorsetid))
+            code.append('arm.collections_all[' + str(i) + '].rigify_sel_set = ' + str(selset))
+            code.append('arm.collections_all[' + str(i) + '].rigify_ui_row = ' + str(uirow))
+            code.append('arm.collections_all[' + str(i) + '].rigify_ui_title = "' + str(uititle)+'"')
+
+
+    # # Rigify layer layout info
+    # if layers and len(arm.rigify_layers) > 0:
+
+    #     for i in range(len(arm.rigify_layers)):
+    #         name = arm.rigify_layers[i].name
+    #         row = arm.rigify_layers[i].row
+    #         selset = arm.rigify_layers[i].selset
+    #         group = arm.rigify_layers[i].group
+    #         code.append('arm.rigify_layers[' + str(i) + '].name = "' + name + '"')
+    #         code.append('arm.rigify_layers[' + str(i) + '].row = ' + str(row))
+    #         code.append('arm.rigify_layers[' + str(i) + '].selset = ' + str(selset))
+    #         code.append('arm.rigify_layers[' + str(i) + '].group = ' + str(group))
 
     #print(code)
     return "\n".join(code)
@@ -134,7 +163,7 @@ class RIGIFY_OT_AddSettingsPreset(Operator):
 
             target_path = os.path.join("presets", self.preset_subdir)
             target_path = bpy.utils.user_resource('SCRIPTS',
-                                                  target_path,
+                                                  path=target_path,
                                                   create=True)
 
             if not target_path:
@@ -388,7 +417,7 @@ classes = (
 def register():
     for cls in classes:
         bpy.utils.register_class(cls)
-    bpy.types.DATA_PT_rigify_buttons.append(panel_func)
+    bpy.types.DATA_PT_rigify.append(panel_func)
 
 
 def unregister():
