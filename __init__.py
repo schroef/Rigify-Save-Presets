@@ -2,19 +2,91 @@ import bpy
 import os
 import re
 from rigify.utils import write_metarig
-from bpy.types import Operator, Menu
-from bpy.props import StringProperty, BoolProperty, EnumProperty
+from bpy.types import Operator, Menu, UIList, PropertyGroup
+from bpy.props import StringProperty, BoolProperty, EnumProperty, CollectionProperty, IntProperty
 from bl_operators.presets import AddPresetBase
 
 bl_info = {
     "name": "Rigify Save Presets",
-    "version": (0, 1, 1),
+    "version": (0, 1, 2),
     "author": "Rombout Versluijs",
     "blender": (4, 0, 0),
     "description": "Makes is easier to save rig presets to Rigify folder",
     "location": "Armature properties, Bone properties, View3d tools panel, Armature Add menu",
     "wiki_url": "https://github.com/schroef/rigify-save-presets",
     "category": "Rigging"}
+
+# Clever usage of UIlist
+# https://blender.stackexchange.com/a/161102/7631
+class RIGIFY_UL_items(UIList):
+    def draw_item(self, context, layout, data, item, icon, active_data, active_propname, index):
+        split = layout.split(factor=0.08)
+        split.label(text="%d" % (index))
+        #split.prop(item, "name", text="", emboss=False, translate=False, icon=custom_icon)
+        # split.label(text=item.name) # avoids renaming the item by accident
+        prop = split.operator("rigify.select_pbones",text=item.name, icon='BONE_DATA', emboss=False)
+        prop.pbone = item.name
+        prop.idx = index
+
+    def invoke(self, context, event):
+        pass   
+
+
+class RigifyPbonesLost(PropertyGroup):
+    name: StringProperty() # -> Instantiated by default
+    # coll_type: StringProperty()
+
+
+class RIGIFY_OT_SelectMissingPbone(Operator):
+    bl_label = "Select Pose Bone Rigify"
+    bl_idname = "rigify.select_pbones"
+    bl_description = "Selects Pose bone when applying rig settings"
+    bl_options = {'REGISTER'}
+
+    pbone : StringProperty()
+    idx : IntProperty()
+
+    def execute(self, context):
+        context.object.data.bones[self.pbone].select = True
+        context.object.data.rigify_pbones_index = self.idx
+        return {'FINISHED'}
+
+
+# simple popup for prompting checking for update & allow to install if available
+class RIGIFY_OT_Pbones_Dialog(Operator):
+    """Dialog which shows which pose bones where not placed in bone collection"""
+    bl_label = "Pose bones Warning Rigify Rig settings"
+    bl_idname = "rigify.pbones_dialog"
+    bl_description = "Dialog which shows which pose bones where not placed in bone collection"
+    bl_options = {'REGISTER'}
+
+    def check(self, context):
+        return True
+
+    def invoke(self, context, event):
+        return context.window_manager.invoke_props_dialog(self, width=300)
+
+    def draw(self, context):
+        layout = self.layout
+        scn = context.scene
+        layout.label(text="Some bones are not placed in a bone collection.", icon='INFO')
+        
+        if (context.active_object.data['pbones_lost']):
+            arm = context.active_object.data
+            # layout.separator()
+            # box = layout.box()
+            # for pbone in context.active_object.data['pbones_lost']:
+            #     col = box.column(align=True)
+            #     col.label(text=pbone)
+            rows = 7
+            row = layout.row()
+            row.template_list("RIGIFY_UL_items", "", arm , 'rigify_pbones_lost', arm, 'rigify_pbones_index', rows=rows)
+
+    def execute(self, context):
+        return {'FINISHED'}
+
+    # def cancel(self, context):
+    #     bpy.ops.rigify.pbones_dialog('INVOKE_DEFAULT') #, my_float=self.my_float, my_bool=self.my_bool, my_string=self.my_string)
 
 
 class RIGIFY_MT_SettingsPresetMenu(Menu):
@@ -37,6 +109,23 @@ def write_rig_settings(obj, layers=False, func_name="create", groups=False):
     code.append("arm = obj.data\n")
 
     arm = obj.data
+
+    # clear pbones lost list
+    code.append("try:")
+    code.append("\tif (arm['pbones_lost']): arm['pbones_lost'] =[]")
+    code.append("\tif (arm.rigify_pbones_lost): arm.rigify_pbones_lost.clear()")
+    code.append("except:")
+    code.append("\tpass\n\n")
+
+    # save current bone collections 
+    code.append("bpy.context.view_layer.objects.active = obj")
+    code.append("bpy.ops.object.mode_set(mode='EDIT')")
+    code.append("bone_collections = arm.collections_all")
+    code.append("boneCollections = {}")
+
+    # Get current bone collections per bone
+    code.append("for ebone in arm.edit_bones:")
+    code.append("\tboneCollections[ebone.name] = [x.name for x in ebone.collections]")
 
     #First delete all old ones
     code.append("\narm.collections.active_index = 0")
@@ -70,7 +159,7 @@ def write_rig_settings(obj, layers=False, func_name="create", groups=False):
 
     
     # Add bone collections 
-    code.append('\nfor i in range('+(str(len(arm.collections_all)+1))+'):')
+    code.append('\nfor i in range('+(str(len(arm.collections_all)))+'):')
     code.append('\tbpy.ops.armature.collection_add()\n')
 
     if layers and len(arm.collections_all) > 0:
@@ -87,7 +176,31 @@ def write_rig_settings(obj, layers=False, func_name="create", groups=False):
             code.append('arm.collections_all[' + str(i) + '].rigify_ui_row = ' + str(uirow))
             code.append('arm.collections_all[' + str(i) + '].rigify_ui_title = "' + str(uititle)+'"')
 
+    # Try placing bones back into bone collections if ecist
+    code.append("\nbpy.ops.object.mode_set(mode='POSE')\n")
+    code.append("pbones_lost = []")
 
+    code.append("def assign_bone_collections(pose_bone, *coll_names):")
+    code.append("\tassert not len(pose_bone.bone.collections)")
+    code.append("\tfor name in coll_names:")
+    code.append("\t\ttry:")
+    code.append("\t\t\tbone_collections[name].assign(pose_bone)")
+    code.append("\t\texcept:")
+    code.append("\t\t\tpbones_lost.append(pbone.name)")
+    code.append("\t\t\tpBone = arm.rigify_pbones_lost.add()")
+    code.append("\t\t\tpBone.name = pbone.name")
+
+    code.append("\npbones = [x for x in boneCollections]")
+    code.append("for pbone in obj.pose.bones:")
+    code.append("\tif pbone.name in pbones:")
+    code.append("\t\t assign_bone_collections(obj.pose.bones[pbone.name], *boneCollections.get(pbone.name))")
+
+    # Show not placed pose bones
+    code.append("\nif (len(pbones_lost) > 0):")
+    code.append("\tarm['pbones_lost'] = pbones_lost")
+    code.append("\tfor pbone in arm.rigify_pbones_lost:")
+    code.append("\t\tarm.bones[pbone].select = True")
+    code.append("\tgetattr(getattr(bpy.ops, 'rigify'), 'pbones_dialog')('INVOKE_DEFAULT')")
     # # Rigify layer layout info
     # if layers and len(arm.rigify_layers) > 0:
 
@@ -408,6 +521,10 @@ def panel_func(self, context):
 
 
 classes = (
+    RIGIFY_UL_items,
+    RigifyPbonesLost,
+    RIGIFY_OT_SelectMissingPbone,
+    RIGIFY_OT_Pbones_Dialog,
     RIGIFY_MT_SettingsPresetMenu,
     RIGIFY_OT_AddSettingsPreset,
     AddRigPreset,
@@ -418,13 +535,16 @@ def register():
     for cls in classes:
         bpy.utils.register_class(cls)
     bpy.types.DATA_PT_rigify.append(panel_func)
+    bpy.types.Armature.rigify_pbones_lost = CollectionProperty(type=RigifyPbonesLost)
+    bpy.types.Armature.rigify_pbones_index = IntProperty(0)
 
 
 def unregister():
     for cls in classes:
         bpy.utils.unregister_class(cls)
-    bpy.types.DATA_PT_rigify_buttons.remove(panel_func)
-
+    bpy.types.DATA_PT_rigify.remove(panel_func)
+    del bpy.types.Armature.rigify_pbones_lost
+    del bpy.types.Armature.rigify_pbones_index
 
 if __name__ == "__main__":
     register()

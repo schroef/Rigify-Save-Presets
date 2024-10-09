@@ -4,7 +4,9 @@ This addon makes it possible to save rig setup to a preset folder. The function 
 
 The added presets can then be loaded directly using the add menu. To get the new preset to show, you need to either restart blender or reload the all the addons pressing F8. Its also now possible save Rigify main settings as presets. These can be loaded at any time, no need for a refresh.
 
-!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/Rigify-Save-Presets/images/rigify-save-presets-v011.png?v20241008)
+>NB with the new implementation of Bone Collections. When applying a preset, i can happen that bones are not placed in a bone collection. Ive added an operator which checks for existing collection and show dialog what is missing 
+
+!['Example Rig Presets'](https://raw.githubusercontent.com/wiki/schroef/Rigify-Save-Presets/images/rigify-save-presets-v012.png?v20241009)
 
 
 ## Rigify Addon

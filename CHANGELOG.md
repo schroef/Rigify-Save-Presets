@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2024-10-09
+### Fix
+- When applying a Rig preset, we loose all bone collection placement. Due to new mechnism when removing all bone collection, prior set bones would loose the info
+  Now when a Rig preset is applied, it check if names are the same. It can still happen that bones will not be placed into a collection. If so, a dialog will show which bones have no bone colelction and they will be all selected.
+
 ## [0.1.1] - 2024-10-08
 ### Fix
 - Make it work in bl4.0+
